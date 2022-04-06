@@ -4,10 +4,10 @@ project(pyhactool)
 find_package(PythonInterp 3.5 REQUIRED)
 find_package(PythonLibs 3.5 REQUIRED)
 
-set(USE_STATIC_MBEDTLS_LIBRARY OFF)
-set(USE_SHARED_MBEDTLS_LIBRARY ON)
+add_compile_options(-fPIC)
 
 add_subdirectory(hactool/mbedtls)
+
 
 include_directories(hactool/mbedtls/include ${PYTHON_INCLUDE_DIR})
 
