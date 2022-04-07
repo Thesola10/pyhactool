@@ -61,10 +61,8 @@ CLASSIFIERS = [
 
 PACKAGE_DIR = {'': '.'}
 
-PY_MODULES = ['hactool']
-
 EXT_MODULES = [
-    CMakeExtension('_hactool')
+    CMakeExtension('hactool')
 ]
 
 CMD_CLASS = {
@@ -81,6 +79,5 @@ setup(
     platforms=PLATFORMS,
     classifiers=CLASSIFIERS,
     package_dir=PACKAGE_DIR,
-    py_modules=PY_MODULES,
     ext_modules=EXT_MODULES,
     cmdclass=CMD_CLASS)

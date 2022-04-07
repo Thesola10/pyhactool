@@ -14,7 +14,7 @@ add_subdirectory(hactool/mbedtls)
 
 include_directories(hactool hactool/mbedtls/include ${PYTHON_INCLUDE_DIR})
 
-cython_add_module(_hactool  _hactool.pyx
+cython_add_module(hactool   hactool.pyx
                             hactool/aes.c
                             hactool/bktr.c
                             hactool/cJSON.c
@@ -37,4 +37,4 @@ cython_add_module(_hactool  _hactool.pyx
                             hactool/utils.c
                             hactool/xci.c)
 
-target_link_libraries(_hactool mbedtls mbedx509 mbedcrypto)
+target_link_libraries(hactool mbedtls mbedx509 mbedcrypto)
