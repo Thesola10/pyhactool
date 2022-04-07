@@ -2,18 +2,11 @@
 
 import os
 import re
-import platform
-import shutil
 
 from setuptools import Extension
 from setuptools import setup
 
 from cmake_setup import CMakeExtension, CMakeBuildExt
-
-from distutils.command.build_ext import build_ext
-from distutils import errors
-from distutils import dep_util
-from distutils import log
 
 
 CURR_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
@@ -28,21 +21,6 @@ def get_version():
             if m:
                 version = m.group(1)
     return version
-
-
-NAME = 'pyhactool'
-
-VERSION = get_version()
-
-URL = 'https://github.com/Thesola10/pyhactool'
-
-DESCRIPTION = 'Python bindings for the hactool utility'
-
-AUTHOR = 'Karim Vergnes <me@thesola.io>'
-
-LICENSE = 'ISC'
-
-PLATFORMS = ['Posix', 'MacOS X', 'Windows']
 
 CLASSIFIERS = [
     'Development Status :: 2 - Pre-Alpha',
@@ -59,25 +37,20 @@ CLASSIFIERS = [
     'Topic :: Utilities',
 ]
 
-PACKAGE_DIR = {'': '.'}
-
-EXT_MODULES = [
-    CMakeExtension('hactool')
-]
-
-CMD_CLASS = {
-    'build_ext': CMakeBuildExt
-}
-
 setup(
-    name=NAME,
-    description=DESCRIPTION,
-    version=VERSION,
-    url=URL,
-    author=AUTHOR,
-    license=LICENSE,
-    platforms=PLATFORMS,
+    name="pyhactool",
+    description="Python bindings for SciresM's pyhactool utility.",
+    version=get_version(),
+    url="https://github.com/Thesola10/pyhactool",
+    author="Karim Vergnes",
+    author_email="me@thesola.io",
+    license='ISC',
+    platforms=['Posix', 'MacOS X', 'Windows'],
     classifiers=CLASSIFIERS,
-    package_dir=PACKAGE_DIR,
-    ext_modules=EXT_MODULES,
-    cmdclass=CMD_CLASS)
+    package_dir={'': '.'},
+    ext_modules=[
+        CMakeExtension('hactool')
+    ],
+    cmdclass={
+        'build_ext': CMakeBuildExt
+    })

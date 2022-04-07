@@ -1,5 +1,8 @@
 # cython: language_level=3
 
+"""Python bindings to SciresM's hactool utility
+"""
+
 cimport lib.types
 cimport lib.utils
 cimport lib.settings
