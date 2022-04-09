@@ -8,24 +8,36 @@ on:
 jobs:
   build-release:
     name: Build release wheel
-    runs-on: ubuntu-latest
-    container: quay.io/pypa/manylinux_2_24_x86_64
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           submodules: recursive
-      - name: Build a wheel and source tarball
-        env:
-          Python3_ROOT_DIR: /opt/python/cp39-cp39
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.9'
+      - name: Install pypa/build
         run: >-
-          /opt/python/cp39-cp39/bin/python -m
+          python -m
+          pip install
+          build
+          auditwheel
+          --user
+      - name: Build a wheel and source tarball
+        run: >-
+          python -m
           build
           --sdist
           --wheel
           --outdir dist/
       - name: Audit resulting wheel into Manylinux
-        run: auditwheel repair dist/*.whl -w dist/
+        run: >-
+          python -m
+          auditwheel
+          repair dist/*.whl
+          -w dist/
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:

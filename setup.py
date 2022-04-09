@@ -22,7 +22,7 @@ def get_version():
             m = re.match(r'#define\sHACTOOL_VERSION\s"(.+)"', line)
             if m:
                 version = m.group(1)
-    return f"{version}-{VERSION_PATCH}"
+    return f"{version}.post{VERSION_PATCH}"
 
 CLASSIFIERS = [
     'Development Status :: 2 - Pre-Alpha',
