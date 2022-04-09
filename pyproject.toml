@@ -1,0 +1,5 @@
+[sdist]
+include = ["hactool"]
+
+[build-system]
+requires = ["setuptools ~= 58.0", "cython ~= 0.29.0", "cmake-setup ~= 0.1.0"]

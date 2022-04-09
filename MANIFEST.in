@@ -1,0 +1,1 @@
+recursive-include hactool *.[ch] CMakeLists.txt
