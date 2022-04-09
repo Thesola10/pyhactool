@@ -47,9 +47,10 @@ setup(
     license='ISC',
     platforms=['Posix', 'MacOS X', 'Windows'],
     classifiers=CLASSIFIERS,
-    package_dir={'': '.'},
+    package_dir={'': 'src'},
+    py_modules=[ 'hactool' ],
     ext_modules=[
-        CMakeExtension('hactool')
+        CMakeExtension('_hactool')
     ],
     cmdclass={
         'build_ext': CMakeBuildExt

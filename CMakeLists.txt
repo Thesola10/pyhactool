@@ -2,20 +2,13 @@ cmake_minimum_required(VERSION 3.10)
 project(pyhactool)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/cmake)
 
-find_package(PythonInterp 3.5 REQUIRED)
-find_package(PythonLibs 3.5 REQUIRED)
-
-include(UseCython)
-
 add_compile_options(-fPIC)
 
 add_subdirectory(hactool/mbedtls)
 
+include_directories(hactool hactool/mbedtls/include)
 
-include_directories(hactool hactool/mbedtls/include ${PYTHON_INCLUDE_DIR})
-
-cython_add_module(hactool   hactool.pyx
-                            hactool/aes.c
+add_library(hactool STATIC  hactool/aes.c
                             hactool/bktr.c
                             hactool/cJSON.c
                             hactool/ConvertUTF.c
@@ -38,3 +31,5 @@ cython_add_module(hactool   hactool.pyx
                             hactool/xci.c)
 
 target_link_libraries(hactool mbedtls mbedx509 mbedcrypto)
+
+add_subdirectory(src)
