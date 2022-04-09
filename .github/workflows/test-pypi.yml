@@ -8,17 +8,24 @@ on:
 jobs:
   build-release:
     name: Build release wheel
-    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        os: [ ubuntu-18.04, macos-latest, windows-latest ]
+        python: ['3.9', '3.10']
+    runs-on: ${{matrix.os}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           submodules: recursive
-      - name: Set up Python 3.9
+      - name: Set up CMake
+        if: matrix.os == 'windows-latest'
+        uses: jwlawson/actions-setup-cmake@v1.12
+      - name: Set up Python
         uses: actions/setup-python@v1
         with:
-          python-version: '3.9'
-      - name: Install pypa/build
+          python-version: ${{matrix.python}}
+      - name: Install pypa/build and auditwheel
         run: >-
           python -m
           pip install
@@ -33,6 +40,7 @@ jobs:
           --wheel
           --outdir dist/
       - name: Audit resulting wheel into Manylinux
+        if: matrix.os == 'ubuntu-18.04'
         run: >-
           python -m
           auditwheel
