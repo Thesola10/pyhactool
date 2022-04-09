@@ -4,3 +4,4 @@ dist
 __pycache__
 *.egg-info
 compile_commands.json
+*.whl

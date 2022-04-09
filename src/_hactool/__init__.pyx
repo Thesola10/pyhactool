@@ -3,14 +3,14 @@
 """Python bindings to SciresM's hactool utility
 """
 
-from .lib.types    import *
-from .lib.utils    import *
-from .lib.settings import *
-from .lib.pki      import *
-from .lib.nca      import *
-from .lib.xci      import *
-from .lib.nax0     import *
-from .lib.extkeys  import *
-from .lib.packages import *
-from .lib.nso      import *
-from .lib.save     import *
+from .lib.types    cimport *
+from .lib.utils    cimport *
+from .lib.settings cimport *
+from .lib.pki      cimport *
+from .lib.nca      cimport *
+from .lib.xci      cimport *
+from .lib.nax0     cimport *
+from .lib.extkeys  cimport *
+from .lib.packages cimport *
+from .lib.nso      cimport *
+from .lib.save     cimport *

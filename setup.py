@@ -11,6 +11,8 @@ from cmake_setup import CMakeExtension, CMakeBuildExt
 
 CURR_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 
+VERSION_PATCH = 1
+
 def get_version():
     """ Return HACTOOL_VERSION string as defined in hactool/version.h """
     version_file_path = os.path.join(CURR_DIR, 'hactool', 'version.h')
@@ -20,7 +22,7 @@ def get_version():
             m = re.match(r'#define\sHACTOOL_VERSION\s"(.+)"', line)
             if m:
                 version = m.group(1)
-    return version
+    return f"{version}-{VERSION_PATCH}"
 
 CLASSIFIERS = [
     'Development Status :: 2 - Pre-Alpha',
