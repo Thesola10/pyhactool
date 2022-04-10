@@ -1,5 +1,44 @@
-[sdist]
-include = ["hactool"]
+[project]
+name = "hactool"
+authors = [ { "name" = "Karim Vergnes", "email" = "me@thesola.io" }
+          , { "name" = "Michael Scire", "email" = "SciresM@gmail.com" }
+          ]
+license = { "file" = "LICENSE" }
+classifiers = [
+    'Development Status :: 2 - Pre-Alpha',
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    'Operating System :: MacOS :: MacOS X',
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: POSIX :: Linux',
+    'Programming Language :: C',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Topic :: Software Development :: Libraries',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Topic :: Utilities',
+]
+urls = { "Source" = "https://github.com/Thesola10/pyhactool" }
+dependencies = []
+dynamic = [ "version", "description" ]
 
 [build-system]
-requires = ["setuptools ~= 58.0", "cython ~= 0.29.0", "cmake-setup ~= 0.1.0"]
+requires = ["cython", "py-build-cmake", "mypy"]
+build-backend = "py_build_cmake.build"
+
+[tool.py-build-cmake.module]
+name = "_hactool"
+directory = "src"
+
+[tool.py-build-cmake.sdist]
+include = ["CMakeLists.txt", "src/*", "hactool/*", "cmake/*"]
+
+[tool.py-build-cmake.cmake]
+build_type = "Release"
+source_path = "."
+install_components = ["python_modules"]
+
+# The `cl` compiler is missing features required to build hactool
+[tool.py-build-cmake.windows.cmake]
+generator = "MSYS Makefiles"
+options = { "CMAKE_HOST_UNIX" = "ON", "CMAKE_C_FLAGS" = "-DMS_WIN64" }

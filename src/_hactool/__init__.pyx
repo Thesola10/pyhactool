@@ -1,7 +1,6 @@
 # cython: language_level=3
 
-"""Python bindings to SciresM's hactool utility
-"""
+__doc__ = """Native library containing hactool components."""
 
 from .lib.types    cimport *
 from .lib.utils    cimport *

@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(pyhactool)
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/cmake)
 
 add_compile_options(-fPIC)
@@ -8,7 +9,14 @@ add_subdirectory(hactool/mbedtls)
 
 include_directories(hactool hactool/mbedtls/include)
 
-add_library(hactool STATIC  hactool/aes.c
+add_definitions(-D_BSD_SOURCE
+                -D_POSIX_SOURCE
+                -D_POSIX_C_SOURCE=200112L
+                -D_DEFAULT_SOURCE
+                -D__USE_MINGW_ANSI_STDIO=1
+                -D_FILE_OFFSET_BITS=64)
+
+add_library(hactool1 STATIC hactool/aes.c
                             hactool/bktr.c
                             hactool/cJSON.c
                             hactool/ConvertUTF.c
@@ -30,6 +38,6 @@ add_library(hactool STATIC  hactool/aes.c
                             hactool/utils.c
                             hactool/xci.c)
 
-target_link_libraries(hactool mbedtls mbedx509 mbedcrypto)
+target_link_libraries(hactool1 mbedtls mbedx509 mbedcrypto)
 
 add_subdirectory(src)
