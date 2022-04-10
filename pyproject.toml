@@ -1,5 +1,5 @@
 [project]
-name = "hactool"
+name = "pyhactool"
 authors = [ { "name" = "Karim Vergnes", "email" = "me@thesola.io" }
           , { "name" = "Michael Scire", "email" = "SciresM@gmail.com" }
           ]
@@ -24,11 +24,11 @@ dependencies = []
 dynamic = [ "version", "description" ]
 
 [build-system]
-requires = ["cython", "py-build-cmake", "mypy"]
+requires = ["cython", "py-build-cmake>=0.0.5", "mypy"]
 build-backend = "py_build_cmake.build"
 
 [tool.py-build-cmake.module]
-name = "_hactool"
+name = "hactool"
 directory = "src"
 
 [tool.py-build-cmake.sdist]
