@@ -4,6 +4,7 @@ authors = [ { "name" = "Karim Vergnes", "email" = "me@thesola.io" }
           , { "name" = "Michael Scire", "email" = "SciresM@gmail.com" }
           ]
 license = { "file" = "LICENSE" }
+readme = "README.md"
 classifiers = [
     'Development Status :: 2 - Pre-Alpha',
     'Environment :: Console',
@@ -41,4 +42,4 @@ install_components = ["python_modules"]
 # The `cl` compiler is missing features required to build hactool
 [tool.py-build-cmake.windows.cmake]
 generator = "MSYS Makefiles"
-options = { "CMAKE_HOST_UNIX" = "ON", "CMAKE_C_FLAGS" = "-DMS_WIN64" }
+options = { "CMAKE_HOST_UNIX" = "ON" }

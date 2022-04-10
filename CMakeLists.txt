@@ -5,6 +5,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/cmake)
 
 add_compile_options(-fPIC)
 
+set(ENABLE_PROGRAMS OFF)
+set(ENABLE_TESTING OFF)
 add_subdirectory(hactool/mbedtls)
 
 include_directories(hactool hactool/mbedtls/include)
