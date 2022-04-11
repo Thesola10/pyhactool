@@ -121,7 +121,7 @@ cdef extern from "nca.h":
         uint32_t sector_ofs
         int physical_reads
         section_crypt_type_t crypt_type
-    struct nca_ctx:
+    cdef struct nca_ctx:
         FILE* file
         int file_size
         unsigned char crypto_type
