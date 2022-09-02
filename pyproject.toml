@@ -24,8 +24,11 @@ dependencies = []
 dynamic = [ "version", "description" ]
 
 [build-system]
-requires = ["cython", "py-build-cmake>=0.0.5", "mypy"]
+requires = ["cython", "py-build-cmake>=0.0.6", "mypy"]
 build-backend = "py_build_cmake.build"
+
+[project.scripts]
+hactool = "hactool.cli:main"
 
 [tool.py-build-cmake.module]
 name = "hactool"

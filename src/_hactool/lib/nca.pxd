@@ -9,7 +9,6 @@ from .ivfc cimport romfs_direntry_t
 from .bktr cimport bktr_relocation_block_t
 from libc.stdint cimport uint64_t
 from libc.stdint cimport uint8_t
-from .settings cimport nca_ctx
 from .bktr cimport bktr_subsection_block_t
 from .ivfc cimport romfs_hdr_t
 from .ivfc cimport ivfc_hdr_t
@@ -121,7 +120,7 @@ cdef extern from "nca.h":
         uint32_t sector_ofs
         int physical_reads
         section_crypt_type_t crypt_type
-    cdef struct nca_ctx:
+    ctypedef struct nca_ctx_t:
         FILE* file
         int file_size
         unsigned char crypto_type
@@ -137,7 +136,6 @@ cdef extern from "nca.h":
         nca_section_ctx_t section_contexts[4]
         npdm_t* npdm
         nca_header_t header
-    ctypedef nca_ctx nca_ctx_t
     void nca_init(nca_ctx_t* ctx)
     void nca_process(nca_ctx_t* ctx)
     int nca_decrypt_header(nca_ctx_t* ctx)

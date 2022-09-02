@@ -1,4 +1,5 @@
 .ccls*
+.py-build-cmake_cache
 build
 dist
 __pycache__

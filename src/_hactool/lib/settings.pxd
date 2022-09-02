@@ -1,5 +1,6 @@
 #  PXDGEN IMPORTS
 from .filepath cimport filepath_t
+from .nca       cimport nca_ctx_t
 from libc.stdint cimport uint32_t
 from libc.stdio cimport FILE
 
@@ -126,14 +127,12 @@ cdef extern from "settings.h":
         FILETYPE_NAX0 = 12
         FILETYPE_BOOT0 = 13
         FILETYPE_SAVE = 14
-    struct nca_ctx:
-        pass
     ctypedef struct hactool_ctx_t:
         hactool_file_type file_type
         FILE* file
         FILE* base_file
         hactool_basefile_t base_file_type
-        nca_ctx* base_nca_ctx
+        nca_ctx_t* base_nca_ctx
         hactool_settings_t settings
         uint32_t action
 

@@ -42,14 +42,17 @@ cdef class HactoolContext:
                         , filetype: hactool_file_type
                         , basefile: IOBase
                         , basetype: hactool_basefile_t
-                        , ncacontext: NCAContext
+                        , ncacontext: NCAContext|None
                         ):
         self._ctx = <hactool_ctx_t *>malloc(sizeof(hactool_ctx_t))
         self._ctx.file = fdopen(file.fileno(), "r")
         self._ctx.file_type = filetype
         self._ctx.base_file = fdopen(basefile.fileno(), "r")
         self._ctx.base_file_type = basetype
-        self._ctx.base_nca_ctx = <nca_ctx_t *>ncacontext._ctx
+        if ncacontext is not None:
+            self._ctx.base_nca_ctx = <nca_ctx_t *>ncacontext._ctx
+        else:
+            self._ctx.base_nca_ctx = <nca_ctx_t *>NULL
 
     def __dealloc__(self):
         fclose(self._ctx.file)
